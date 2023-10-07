@@ -402,30 +402,138 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             g.drawString("<", 400, 400);
             g.drawString(">", 470, 400);
             g.setFont(new Font("Franklin Gothic Demi Italic", 4, 180));
+
+            int outlineSize = 2; // You can adjust the size of the outline
+
+            // HAND KARTE1
             if (ArrayHand[0] != 0) {
-                g.drawString(HandKarte1, 150, 610);
-            }
-            if (ArrayHand[1] != 0) {
-                g.drawString(HandKarte2, 300, 610);
-            }
-            if (ArrayHand[2] != 0) {
-                g.drawString(HandKarte3, 450, 610);
-            }
-            if (ArrayHand[3] != 0) {
-                g.drawString(HandKarte4, 600, 610);
+                int cardNumberPoseX = 150;
+                int cardNumberPoseY = 610;
+                g.setColor(Color.BLACK);
+                for (int xOffset = -outlineSize; xOffset <= outlineSize; xOffset++) {
+                    for (int yOffset = -outlineSize; yOffset <= outlineSize; yOffset++) {
+                        if (xOffset != 0 || yOffset != 0) {
+                            g.drawString(HandKarte1, cardNumberPoseX + xOffset, cardNumberPoseY + yOffset);
+                        }
+                    }
+                }
+                g.setColor(Color.WHITE);
+                g.drawString(HandKarte1, cardNumberPoseX, cardNumberPoseY);
             }
 
+            // HAND KARTE2
+            if (ArrayHand[1] != 0) {
+                int cardNumberPoseX = 300;
+                int cardNumberPoseY = 610;
+                g.setColor(Color.BLACK);
+                for (int xOffset = -outlineSize; xOffset <= outlineSize; xOffset++) {
+                    for (int yOffset = -outlineSize; yOffset <= outlineSize; yOffset++) {
+                        if (xOffset != 0 || yOffset != 0) {
+                            g.drawString(HandKarte2, cardNumberPoseX + xOffset, cardNumberPoseY + yOffset);
+                        }
+                    }
+                }
+                g.setColor(Color.WHITE);
+                g.drawString(HandKarte2, cardNumberPoseX, cardNumberPoseY);
+            }
+
+            // HAND KARTE3
+            if (ArrayHand[2] != 0) {
+                int cardNumberPoseX = 450;
+                int cardNumberPoseY = 610;
+                g.setColor(Color.BLACK);
+                for (int xOffset = -outlineSize; xOffset <= outlineSize; xOffset++) {
+                    for (int yOffset = -outlineSize; yOffset <= outlineSize; yOffset++) {
+                        if (xOffset != 0 || yOffset != 0) {
+                            g.drawString(HandKarte3, cardNumberPoseX + xOffset, cardNumberPoseY + yOffset);
+                        }
+                    }
+                }
+                g.setColor(Color.WHITE);
+                g.drawString(HandKarte3, cardNumberPoseX, cardNumberPoseY);
+            }
+
+            // HAND KARTE4
+            if (ArrayHand[3] != 0) {
+                int cardNumberPoseX = 600;
+                int cardNumberPoseY = 610;
+                g.setColor(Color.BLACK);
+                for (int xOffset = -outlineSize; xOffset <= outlineSize; xOffset++) {
+                    for (int yOffset = -outlineSize; yOffset <= outlineSize; yOffset++) {
+                        if (xOffset != 0 || yOffset != 0) {
+                            g.drawString(HandKarte4, cardNumberPoseX + xOffset, cardNumberPoseY + yOffset);
+                        }
+                    }
+                }
+                g.setColor(Color.WHITE);
+                g.drawString(HandKarte4, cardNumberPoseX, cardNumberPoseY);
+            }
+
+
+
+
+            // Deck Karte 1
             if (ArrayDeck[0] != 0) {
-                g.drawString(DeckKarte1, 150, 280);
+                int cardNumberPoseX = 150;
+                int cardNumberPoseY = 280;
+                g.setColor(Color.BLACK);
+                for (int xOffset = -outlineSize; xOffset <= outlineSize; xOffset++) {
+                    for (int yOffset = -outlineSize; yOffset <= outlineSize; yOffset++) {
+                        if (xOffset != 0 || yOffset != 0) {
+                            g.drawString(DeckKarte1, cardNumberPoseX + xOffset, cardNumberPoseY + yOffset);
+                        }
+                    }
+                }
+                g.setColor(Color.WHITE);
+                g.drawString(DeckKarte1, cardNumberPoseX, cardNumberPoseY);
             }
+
+            // Deck Karte 2
             if (ArrayDeck[1] != 0) {
-                g.drawString(DeckKarte2, 310, 280);
+                int cardNumberPoseX = 310;
+                int cardNumberPoseY = 280;
+                g.setColor(Color.BLACK);
+                for (int xOffset = -outlineSize; xOffset <= outlineSize; xOffset++) {
+                    for (int yOffset = -outlineSize; yOffset <= outlineSize; yOffset++) {
+                        if (xOffset != 0 || yOffset != 0) {
+                            g.drawString(DeckKarte2, cardNumberPoseX + xOffset, cardNumberPoseY + yOffset);
+                        }
+                    }
+                }
+                g.setColor(Color.WHITE);
+                g.drawString(DeckKarte2, cardNumberPoseX, cardNumberPoseY);
             }
+
+            // Deck Karte 3
             if (ArrayDeck[2] != 0) {
-                g.drawString(DeckKarte3, 470, 280);
+                int cardNumberPoseX = 470;
+                int cardNumberPoseY = 280;
+                g.setColor(Color.BLACK);
+                for (int xOffset = -outlineSize; xOffset <= outlineSize; xOffset++) {
+                    for (int yOffset = -outlineSize; yOffset <= outlineSize; yOffset++) {
+                        if (xOffset != 0 || yOffset != 0) {
+                            g.drawString(DeckKarte3, cardNumberPoseX + xOffset, cardNumberPoseY + yOffset);
+                        }
+                    }
+                }
+                g.setColor(Color.WHITE);
+                g.drawString(DeckKarte3, cardNumberPoseX, cardNumberPoseY);
             }
+
+            // Deck Karte 4
             if (ArrayDeck[3] != 0) {
-                g.drawString(DeckKarte4, 630, 280);
+                int cardNumberPoseX = 630;
+                int cardNumberPoseY = 280;
+                g.setColor(Color.BLACK);
+                for (int xOffset = -outlineSize; xOffset <= outlineSize; xOffset++) {
+                    for (int yOffset = -outlineSize; yOffset <= outlineSize; yOffset++) {
+                        if (xOffset != 0 || yOffset != 0) {
+                            g.drawString(DeckKarte4, cardNumberPoseX + xOffset, cardNumberPoseY + yOffset);
+                        }
+                    }
+                }
+                g.setColor(Color.WHITE);
+                g.drawString(DeckKarte4, cardNumberPoseX, cardNumberPoseY);
             }
             g.drawImage(imageStaple, 798, 378, 74, 94, null);
 
@@ -437,6 +545,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             g.fillOval(285, 5, 60, 60);
 
             // TODO
+            // KI Spieler Board
             g.setColor(Color.BLUE);
             g.fillOval(80, 10, 50, 50);
             if (the_4_KI_Player[0]) {
@@ -468,31 +577,19 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             zzu[2] = 220;
             zzu[3] = 290;
             for (int uuz = 0; uuz < anzahlvonkarten[0]; uuz++) {
-                g.setColor(Color.BLACK);
-                g.fillRect(zzu[0] - 2, 33, 24, 34);
-                g.setColor(Color.WHITE);
-                g.fillRect(zzu[0], 35, 20, 30);
+                g.drawImage(imageKarte, zzu[0], 33, 24, 34, null);
                 zzu[0] = zzu[0] + 5;
             }
             for (int uuz = 0; uuz < anzahlvonkarten[1]; uuz++) {
-                g.setColor(Color.BLACK);
-                g.fillRect(zzu[1] - 2, 33, 24, 34);
-                g.setColor(Color.WHITE);
-                g.fillRect(zzu[1], 35, 20, 30);
+                g.drawImage(imageKarte, zzu[1], 33, 24, 34, null);
                 zzu[1] = zzu[1] + 5;
             }
             for (int uuz = 0; uuz < anzahlvonkarten[2]; uuz++) {
-                g.setColor(Color.BLACK);
-                g.fillRect(zzu[2] - 2, 33, 24, 34);
-                g.setColor(Color.WHITE);
-                g.fillRect(zzu[2], 35, 20, 30);
+                g.drawImage(imageKarte, zzu[2], 33, 24, 34, null);
                 zzu[2] = zzu[2] + 5;
             }
             for (int uuz = 0; uuz < anzahlvonkarten[3]; uuz++) {
-                g.setColor(Color.BLACK);
-                g.fillRect(zzu[3] - 2, 33, 24, 34);
-                g.setColor(Color.WHITE);
-                g.fillRect(zzu[3], 35, 20, 30);
+                g.drawImage(imageKarte, zzu[3], 33, 24, 34, null);
                 zzu[3] = zzu[3] + 5;
             }
             if (ArrayHand[0] == 0 && ArrayHand[1] == 0 && ArrayHand[2] == 0 && ArrayHand[3] == 0) {
