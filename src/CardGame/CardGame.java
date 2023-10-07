@@ -40,7 +40,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     boolean YouCanplay = true;
     boolean [] the_4_KI_Player = new boolean[4];
     int [] anzahlvonkarten = new int[4];
-    ImageIcon [] imagePic = new ImageIcon[7];
+    ImageIcon [] imagePic = new ImageIcon[8];
     Image imageBackground = null;
     Image imageHolz = null;
     Image imageDeckBackground = null;
@@ -48,6 +48,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     Image imageKarte = null;
     Image imageDeck = null;
     Image imageStaple = null;
+    Image StartScreen = null;
 
     public CardGame() {
         JFrame frame = new JFrame("Kartenspiel");
@@ -76,14 +77,15 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         imageStaple = imagePic[5].getImage();
         imagePic[6] = new ImageIcon("image/HandKarten.png");
         imageHandBackground = imagePic[6].getImage();
+        imagePic[7] = new ImageIcon("image/StartScreen.png");
+        StartScreen = imagePic[7].getImage();
     }
 
 
     public void paint (Graphics g) {
         super.paint(g);
         if(Start == true) {
-            g.setColor(Color.BLACK);
-		    g.fillRect(0, 0, Breite, Hohe);
+            g.drawImage(StartScreen, 0, 0, Breite, Hohe, null);
             DeckKarte[0] = true;
             DeckKarte[1] = false;
             DeckKarte[2] = false;
