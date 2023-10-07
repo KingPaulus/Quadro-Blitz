@@ -34,7 +34,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     String DeckKarte4 = "";
     boolean Links = false, Rechts = false;
     boolean [] DeckKarte = new boolean [4];
-    boolean Start = true;
+    boolean Start = false;
     boolean Hauptspiel = false;
     boolean Ende = false;
     boolean YouCanplay = true;
@@ -60,6 +60,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         frame.addMouseListener(this);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        this.initializeGame();
     }
 
     public void setImage() {
@@ -81,46 +82,108 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         StartScreen = imagePic[7].getImage();
     }
 
+    public void initializeGame() {
+        DeckKarte[0] = true;
+        DeckKarte[1] = false;
+        DeckKarte[2] = false;
+        DeckKarte[3] = false;
+        the_4_KI_Player[0] = true;
+        the_4_KI_Player[1] = false;
+        the_4_KI_Player[2] = false;
+        the_4_KI_Player[3] = false;
+
+        System.out.println("Start");
+        System.out.println("Karte" + 1 + " = " + ArrayDeck[0]);
+        System.out.println("Karte" + 2 + " = " + ArrayDeck[1]);
+        System.out.println("Karte" + 3 + " = " + ArrayDeck[2]);
+        System.out.println("Karte" + 4 + " = " + ArrayDeck[3]);
+
+        for (int MarvinLOL = 0; ArrayHand.length > MarvinLOL; MarvinLOL++) {
+            int rndm = (int) (Math.random() * 9);
+            if (rndm == 0) {
+                rndm = 1;
+            }
+            System.out.println("rndm = " + rndm);
+            ArrayHand[MarvinLOL] = rndm;
+        }
+        for (int Hallo = 0; Hallo < ArrayDeck.length; Hallo++) {
+            ArrayDeck[Hallo] = 0;
+        }
+        for (int uuzz = 0; uuzz < anzahlvonkarten.length; uuzz++) {
+            anzahlvonkarten[uuzz] = 4;
+        }
+        setImage();
+        Start = true;
+        repaint();
+    };
+
+    // Ordne dem Array wert einem String zu
+    public String orderCardHand(int cardIndex) {
+        if (ArrayHand[cardIndex] == 0) {
+            return "0";
+        } else if (ArrayHand[cardIndex] == 1) {
+            return "1";
+        } else if (ArrayHand[cardIndex] == 2) {
+            return "2";
+        } else if (ArrayHand[cardIndex] == 3) {
+            return "3";
+        } else if (ArrayHand[cardIndex] == 4) {
+            return "4";
+        } else if (ArrayHand[cardIndex] == 5) {
+            return "5";
+        } else if (ArrayHand[cardIndex] == 6) {
+            return "6";
+        } else if (ArrayHand[cardIndex] == 7) {
+            return "7";
+        } else if (ArrayHand[cardIndex] == 8) {
+            return "8";
+        } else if (ArrayHand[cardIndex] == 9) {
+            return "9";
+        } else {
+            System.out.println("ERROR Hand Karte " + (cardIndex + 1));
+            return "0";
+        }
+    }
+
+    //
+    public String orderCardDeck(int cardIndex) {
+        if (ArrayDeck[cardIndex] == 0) {
+            return "0";
+        } else if (ArrayDeck[cardIndex] == 1) {
+            return "1";
+        } else if (ArrayDeck[cardIndex] == 2) {
+            return "2";
+        } else if (ArrayDeck[cardIndex] == 3) {
+            return "3";
+        } else if (ArrayDeck[cardIndex] == 4) {
+            return "4";
+        } else if (ArrayDeck[cardIndex] == 5) {
+            return "5";
+        } else if (ArrayDeck[cardIndex] == 6) {
+            return "6";
+        } else if (ArrayDeck[cardIndex] == 7) {
+            return "7";
+        } else if (ArrayDeck[cardIndex] == 8) {
+            return "8";
+        } else if (ArrayDeck[cardIndex] == 9) {
+            return "9";
+        } else {
+            System.out.println("ERROR Deck Karte " + (cardIndex + 1));
+            return "0";
+        }
+    }
+
+
 
     public void paint (Graphics g) {
         super.paint(g);
-        if(Start == true) {
+        if (Start == true){
             g.drawImage(StartScreen, 0, 0, Breite, Hohe, null);
-            DeckKarte[0] = true;
-            DeckKarte[1] = false;
-            DeckKarte[2] = false;
-            DeckKarte[3] = false;
-            the_4_KI_Player[0] = true;
-            the_4_KI_Player[1] = false;
-            the_4_KI_Player[2] = false;
-            the_4_KI_Player[3] = false;
-
-            System.out.println("Start");
-            System.out.println("Karte" + 1 + " = " + ArrayDeck[0]);
-            System.out.println("Karte" + 2 + " = " + ArrayDeck[1]);
-            System.out.println("Karte" + 3 + " = " + ArrayDeck[2]);
-            System.out.println("Karte" + 4 + " = " + ArrayDeck[3]);
-
-            for(int MarvinLOL = 0;ArrayHand.length>MarvinLOL;MarvinLOL++) {
-                int rndm = (int)(Math.random()*9);
-                if(rndm == 0) {
-                    rndm = 1;
-                }
-                System.out.println("rndm = " + rndm);
-                ArrayHand[MarvinLOL] = rndm;
-            }
-            for(int Hallo = 0;Hallo < ArrayDeck.length; Hallo++) {
-                ArrayDeck[Hallo] = 0;
-            }
-            for(int uuzz = 0;uuzz<anzahlvonkarten.length;uuzz++) {
-                anzahlvonkarten[uuzz] = 4;
-            }
-            setImage();
             Start = false;
             Hauptspiel = true;
-            repaint();
         } else if(Hauptspiel == true) {
 
+            // Card Border
             if (ArrayDeck[0] == 9) {
                 ArrayDeck[0] = 0;
             }
@@ -134,219 +197,22 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                 ArrayDeck[3] = 0;
             }
 
-            if (ArrayHand[0] == 0) {
-                HandKarte1 = "0";
-            } else if (ArrayHand[0] == 1) {
-                HandKarte1 = "1";
-            } else if (ArrayHand[0] == 2) {
-                HandKarte1 = "2";
-            } else if (ArrayHand[0] == 3) {
-                HandKarte1 = "3";
-            } else if (ArrayHand[0] == 4) {
-                HandKarte1 = "4";
-            } else if (ArrayHand[0] == 5) {
-                HandKarte1 = "5";
-            } else if (ArrayHand[0] == 6) {
-                HandKarte1 = "6";
-            } else if (ArrayHand[0] == 7) {
-                HandKarte1 = "7";
-            } else if (ArrayHand[0] == 8) {
-                HandKarte1 = "8";
-            } else if (ArrayHand[0] == 9) {
-                HandKarte1 = "9";
-            } else {
-                System.out.println("ERROR HandKarte1");
-            }
+            HandKarte1 = this.orderCardHand(0);
+            HandKarte2 = this.orderCardHand(1);
+            HandKarte3 = this.orderCardHand(2);
+            HandKarte4 = this.orderCardHand(3);
 
-            if (ArrayHand[1] == 0) {
-                HandKarte2 = "0";
-            } else if (ArrayHand[1] == 1) {
-                HandKarte2 = "1";
-            } else if (ArrayHand[1] == 2) {
-                HandKarte2 = "2";
-            } else if (ArrayHand[1] == 3) {
-                HandKarte2 = "3";
-            } else if (ArrayHand[1] == 4) {
-                HandKarte2 = "4";
-            } else if (ArrayHand[1] == 5) {
-                HandKarte2 = "5";
-            } else if (ArrayHand[1] == 6) {
-                HandKarte2 = "6";
-            } else if (ArrayHand[1] == 7) {
-                HandKarte2 = "7";
-            } else if (ArrayHand[1] == 8) {
-                HandKarte2 = "8";
-            } else if (ArrayHand[1] == 9) {
-                HandKarte2 = "9";
-            } else {
-                System.out.println("ERROR HandKarte2");
-            }
+            DeckKarte1 = this.orderCardDeck(0);
+            DeckKarte2 = this.orderCardDeck(1);
+            DeckKarte3 = this.orderCardDeck(2);
+            DeckKarte4 = this.orderCardDeck(3);
 
-            if (ArrayHand[2] == 0) {
-                HandKarte3 = "0";
-            } else if (ArrayHand[2] == 1) {
-                HandKarte3 = "1";
-            } else if (ArrayHand[2] == 2) {
-                HandKarte3 = "2";
-            } else if (ArrayHand[2] == 3) {
-                HandKarte3 = "3";
-            } else if (ArrayHand[2] == 4) {
-                HandKarte3 = "4";
-            } else if (ArrayHand[2] == 5) {
-                HandKarte3 = "5";
-            } else if (ArrayHand[2] == 6) {
-                HandKarte3 = "6";
-            } else if (ArrayHand[2] == 7) {
-                HandKarte3 = "7";
-            } else if (ArrayHand[2] == 8) {
-                HandKarte3 = "8";
-            } else if (ArrayHand[2] == 9) {
-                HandKarte3 = "9";
-            } else {
-                System.out.println("ERROR HandKarte3");
-            }
-
-            if (ArrayHand[3] == 0) {
-                HandKarte4 = "0";
-            } else if (ArrayHand[3] == 1) {
-                HandKarte4 = "1";
-            } else if (ArrayHand[3] == 2) {
-                HandKarte4 = "2";
-            } else if (ArrayHand[3] == 3) {
-                HandKarte4 = "3";
-            } else if (ArrayHand[3] == 4) {
-                HandKarte4 = "4";
-            } else if (ArrayHand[3] == 5) {
-                HandKarte4 = "5";
-            } else if (ArrayHand[3] == 6) {
-                HandKarte4 = "6";
-            } else if (ArrayHand[3] == 7) {
-                HandKarte4 = "7";
-            } else if (ArrayHand[3] == 8) {
-                HandKarte4 = "8";
-            } else if (ArrayHand[3] == 9) {
-                HandKarte4 = "9";
-            } else {
-                System.out.println("ERROR HandKarte4");
-            }
-
-            //-------------------------------------------------------
-
-            if (ArrayDeck[0] == 0) {
-                DeckKarte1 = "0";
-            } else if (ArrayDeck[0] == 1) {
-                DeckKarte1 = "1";
-            } else if (ArrayDeck[0] == 2) {
-                DeckKarte1 = "2";
-            } else if (ArrayDeck[0] == 3) {
-                DeckKarte1 = "3";
-            } else if (ArrayDeck[0] == 4) {
-                DeckKarte1 = "4";
-            } else if (ArrayDeck[0] == 5) {
-                DeckKarte1 = "5";
-            } else if (ArrayDeck[0] == 6) {
-                DeckKarte1 = "6";
-            } else if (ArrayDeck[0] == 7) {
-                DeckKarte1 = "7";
-            } else if (ArrayDeck[0] == 8) {
-                DeckKarte1 = "8";
-            } else if (ArrayDeck[0] == 9) {
-                DeckKarte1 = "9";
-            } else {
-                System.out.println("ERROR DeckKarte1");
-            }
-
-            if (ArrayDeck[1] == 0) {
-                DeckKarte2 = "0";
-            } else if (ArrayDeck[1] == 1) {
-                DeckKarte2 = "1";
-            } else if (ArrayDeck[1] == 2) {
-                DeckKarte2 = "2";
-            } else if (ArrayDeck[1] == 3) {
-                DeckKarte2 = "3";
-            } else if (ArrayDeck[1] == 4) {
-                DeckKarte2 = "4";
-            } else if (ArrayDeck[1] == 5) {
-                DeckKarte2 = "5";
-            } else if (ArrayDeck[1] == 6) {
-                DeckKarte2 = "6";
-            } else if (ArrayDeck[1] == 7) {
-                DeckKarte2 = "7";
-            } else if (ArrayDeck[1] == 8) {
-                DeckKarte2 = "8";
-            } else if (ArrayDeck[1] == 9) {
-                DeckKarte2 = "9";
-            } else {
-                System.out.println("ERROR DeckKarte2");
-            }
-
-            if (ArrayDeck[2] == 0) {
-                DeckKarte3 = "0";
-            } else if (ArrayDeck[2] == 1) {
-                DeckKarte3 = "1";
-            } else if (ArrayDeck[2] == 2) {
-                DeckKarte3 = "2";
-            } else if (ArrayDeck[2] == 3) {
-                DeckKarte3 = "3";
-            } else if (ArrayDeck[2] == 4) {
-                DeckKarte3 = "4";
-            } else if (ArrayDeck[2] == 5) {
-                DeckKarte3 = "5";
-            } else if (ArrayDeck[2] == 6) {
-                DeckKarte3 = "6";
-            } else if (ArrayDeck[2] == 7) {
-                DeckKarte3 = "7";
-            } else if (ArrayDeck[2] == 8) {
-                DeckKarte3 = "8";
-            } else if (ArrayDeck[2] == 9) {
-                DeckKarte3 = "9";
-            } else {
-                System.out.println("ERROR DeckKarte3");
-            }
-
-            if (ArrayDeck[3] == 0) {
-                DeckKarte4 = "0";
-            } else if (ArrayDeck[3] == 1) {
-                DeckKarte4 = "1";
-            } else if (ArrayDeck[3] == 2) {
-                DeckKarte4 = "2";
-            } else if (ArrayDeck[3] == 3) {
-                DeckKarte4 = "3";
-            } else if (ArrayDeck[3] == 4) {
-                DeckKarte4 = "4";
-            } else if (ArrayDeck[3] == 5) {
-                DeckKarte4 = "5";
-            } else if (ArrayDeck[3] == 6) {
-                DeckKarte4 = "6";
-            } else if (ArrayDeck[3] == 7) {
-                DeckKarte4 = "7";
-            } else if (ArrayDeck[3] == 8) {
-                DeckKarte4 = "8";
-            } else if (ArrayDeck[3] == 9) {
-                DeckKarte4 = "9";
-            } else {
-                System.out.println("ERROR DeckKarte4");
-            }
-
-
-            //TODO
-//		g.setColor(background_Color);
-//		g.fillRect(0, 0, Breite, Hohe);
             g.drawImage(imageBackground, 0, 0, Breite, Hohe, null);
 
-//		g.setColor(Color.ORANGE.darker());
-//		g.fillRect(100, 90, 700, 260);
             g.drawImage(imageHolz, 100, 90, 700, 260, null);
 
-//		g.setColor(background_Color);
-//		g.fillRect(115, 105, 670, 230);
             g.drawImage(imageDeckBackground, 115, 105, 670, 230, null);
 
-//		g.setColor(Color.BLUE);
-//		g.fillRect(130, 440, 610, 220);
-            //imageDeckBackground
-            // image1
-            // imageDeckBackground
             g.drawImage(imageHandBackground, 130, 440, 610, 220, null);
 
             // Deck
