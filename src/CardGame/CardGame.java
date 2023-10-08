@@ -113,7 +113,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             anzahlvonkarten[uuzz] = 4;
         }
         setImage();
-        Hauptspiel = true;
+        Start = true;
         repaint();
     }
 
@@ -180,8 +180,6 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         super.paint(g);
         if (Start == true) {
             g.drawImage(StartScreen, 0, 0, Breite, Hohe, null);
-            Start = false;
-            Hauptspiel = true;
         } else if (Hauptspiel == true) {
 
             // Card Border
@@ -773,19 +771,27 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         int x = e.getX();
         int y = e.getY();
         System.out.println("x = " + x + " | y = " + y);
-        if (x > 400 && x < 445 && y > 390 && y < 440) {
-            System.out.println("Links");
-            MouseEvents.Selected_Deck_Field_to_Left();
-            repaint();
+        if (Start == true) {
+            if (x > 315 && x < 545 && y > 605 && y < 680) {
+                System.out.println("Start");
+                Start = false;
+                Hauptspiel = true;
+            }
         }
+        if (YouCanplay == true && Hauptspiel == true) {
 
-        if (x > 470 && x < 515 && y > 390 && y < 440) {
-            System.out.println("Rechts");
-            MouseEvents.Selected_Deck_Field_to_Right();
-            repaint();
-        }
+            if (x > 400 && x < 445 && y > 390 && y < 440) {
+                System.out.println("Links");
+                MouseEvents.Selected_Deck_Field_to_Left();
+                repaint();
+            }
 
-        if (YouCanplay == true) {
+            if (x > 470 && x < 515 && y > 390 && y < 440) {
+                System.out.println("Rechts");
+                MouseEvents.Selected_Deck_Field_to_Right();
+                repaint();
+            }
+
             if (x > 810 && x < 875 && y > 410 && y < 500) {
                 System.out.println("Mischen");
                 System.out.println("--------");
@@ -794,7 +800,6 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                     if (rndm == 0) {
                         rndm = 1;
                     }
-//					System.out.println("rndm = " + rndm);
                     ArrayHand[MarvinLOL] = rndm;
                 }
                 for (int uuzz = 0; uuzz < anzahlvonkarten.length; uuzz++) {
@@ -804,8 +809,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                 YouCanplay = false;
                 kiPlay();
             }
-        }
-        if (YouCanplay == true) {
+
             if (x > 145 && x < 285 && y > 480 && y < 675) {
                 // Karte 1
                 MouseEvents.PlayCard(0);
