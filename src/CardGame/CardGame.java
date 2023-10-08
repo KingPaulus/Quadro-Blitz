@@ -38,7 +38,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     public static boolean YouCanplay = true;
     public static boolean[] the_4_KI_Player = new boolean[4];
     public static int[] anzahlvonkarten = new int[4];
-    ImageIcon[] imagePic = new ImageIcon[8];
+    ImageIcon[] imagePic = new ImageIcon[12];
     Image imageBackground = null;
     Image imageHolz = null;
     Image imageDeckBackground = null;
@@ -46,6 +46,10 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     Image imageKarte = null;
     Image imageDeck = null;
     Image imageStaple = null;
+    Image YouPic = null;
+    Image opponentPic1 = null;
+    Image opponentPic2 = null;
+    Image opponentPic3 = null;
     Image StartScreen = null;
 
     public CardGame() {
@@ -78,6 +82,15 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         imageHandBackground = imagePic[6].getImage();
         imagePic[7] = new ImageIcon("image/StartScreen.png");
         StartScreen = imagePic[7].getImage();
+        imagePic[8] = new ImageIcon("image/YouPlayer.png");
+        YouPic = imagePic[8].getImage();
+        imagePic[9] = new ImageIcon("image/KIPlayer1.png");
+        opponentPic1 = imagePic[9].getImage();
+        imagePic[10] = new ImageIcon("image/KIPlayer2.png");
+        opponentPic2 = imagePic[10].getImage();
+        imagePic[11] = new ImageIcon("image/KIPlayer3.png");
+        opponentPic3 = imagePic[11].getImage();
+
     }
 
     public void initializeGame() {
@@ -398,39 +411,37 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             }
             g.drawImage(imageStaple, 798, 378, 74, 94, null);
 
+
+            // TODO
             // Spieler Kreise
             g.setColor(Color.BLACK);
             g.fillOval(75, 5, 60, 60);
             g.fillOval(145, 5, 60, 60);
             g.fillOval(215, 5, 60, 60);
             g.fillOval(285, 5, 60, 60);
-
-            // TODO
-            // KI Spieler Board
-            g.setColor(Color.BLUE);
-            g.fillOval(80, 10, 50, 50);
             if (the_4_KI_Player[0]) {
                 g.setColor(Color.green);
-                g.fillOval(80, 10, 50, 50);
+                g.fillOval(75, 5, 60, 60);
             }
-            g.setColor(Color.BLUE);
-            g.fillOval(150, 10, 50, 50);
             if (the_4_KI_Player[1]) {
                 g.setColor(Color.green);
-                g.fillOval(150, 10, 50, 50);
+                g.fillOval(145, 5, 60, 60);
             }
-            g.setColor(Color.BLUE);
-            g.fillOval(220, 10, 50, 50);
             if (the_4_KI_Player[2]) {
                 g.setColor(Color.green);
-                g.fillOval(220, 10, 50, 50);
+                g.fillOval(215, 5, 60, 60);
             }
-            g.setColor(Color.BLUE);
-            g.fillOval(290, 10, 50, 50);
             if (the_4_KI_Player[3]) {
                 g.setColor(Color.green);
-                g.fillOval(290, 10, 50, 50);
+                g.fillOval(285, 5, 60, 60);
             }
+
+            // Spieler Bilder
+            g.drawImage(YouPic, 80, 10, 50, 50, null);
+            g.drawImage(opponentPic1, 150, 10, 50, 50, null);
+            g.drawImage(opponentPic2, 220, 10, 50, 50, null);
+            g.drawImage(opponentPic3, 290, 10, 50, 50, null);
+
 
             int[] zzu = new int[4];
             zzu[0] = 80;
