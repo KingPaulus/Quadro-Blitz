@@ -778,7 +778,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                 Hauptspiel = true;
             }
         }
-        if (YouCanplay == true && Hauptspiel == true) {
+        if (Hauptspiel == true) {
 
             if (x > 400 && x < 445 && y > 390 && y < 440) {
                 System.out.println("Links");
@@ -792,43 +792,46 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                 repaint();
             }
 
-            if (x > 810 && x < 875 && y > 410 && y < 500) {
-                System.out.println("Mischen");
-                System.out.println("--------");
-                for (int MarvinLOL = 0; ArrayHand.length > MarvinLOL; MarvinLOL++) {
-                    int rndm = (int) (Math.random() * 9);
-                    if (rndm == 0) {
-                        rndm = 1;
-                    }
-                    ArrayHand[MarvinLOL] = rndm;
-                }
-                for (int uuzz = 0; uuzz < anzahlvonkarten.length; uuzz++) {
-                    anzahlvonkarten[uuzz] = 4;
-                }
-                repaint();
-                YouCanplay = false;
-                kiPlay();
-            }
+            if(YouCanplay == true) {
 
-            if (x > 145 && x < 285 && y > 480 && y < 675) {
-                // Karte 1
-                MouseEvents.PlayCard(0);
-            }
-            repaint();
-            if (x > 300 && x < 435 && y > 480 && y < 675) {
-                // Karte 2
-                MouseEvents.PlayCard(1);
+                if (x > 810 && x < 875 && y > 410 && y < 500) {
+                    System.out.println("Mischen");
+                    System.out.println("--------");
+                    for (int MarvinLOL = 0; ArrayHand.length > MarvinLOL; MarvinLOL++) {
+                        int rndm = (int) (Math.random() * 9);
+                        if (rndm == 0) {
+                            rndm = 1;
+                        }
+                        ArrayHand[MarvinLOL] = rndm;
+                    }
+                    for (int uuzz = 0; uuzz < anzahlvonkarten.length; uuzz++) {
+                        anzahlvonkarten[uuzz] = 4;
+                    }
+                    repaint();
+                    YouCanplay = false;
+                    kiPlay();
+                }
+
+                if (x > 145 && x < 285 && y > 480 && y < 675) {
+                    // Karte 1
+                    MouseEvents.PlayCard(0);
+                }
                 repaint();
-            }
-            if (x > 450 && x < 585 && y > 480 && y < 675) {
-                // Karte 3
-                MouseEvents.PlayCard(2);
-                repaint();
-            }
-            if (x > 600 && x < 735 && y > 480 && y < 675) {
-                // Karte 4
-                MouseEvents.PlayCard(3);
-                repaint();
+                if (x > 300 && x < 435 && y > 480 && y < 675) {
+                    // Karte 2
+                    MouseEvents.PlayCard(1);
+                    repaint();
+                }
+                if (x > 450 && x < 585 && y > 480 && y < 675) {
+                    // Karte 3
+                    MouseEvents.PlayCard(2);
+                    repaint();
+                }
+                if (x > 600 && x < 735 && y > 480 && y < 675) {
+                    // Karte 4
+                    MouseEvents.PlayCard(3);
+                    repaint();
+                }
             }
         }
     }
