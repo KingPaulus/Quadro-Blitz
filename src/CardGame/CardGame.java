@@ -15,8 +15,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class CardGame extends JPanel implements ActionListener, MouseListener, KeyListener {
 
@@ -28,18 +26,18 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     String HandKarte3 = "";
     String HandKarte4 = "";
     public static int[] ArrayDeck = new int[4];
-    String DeckKarte1 = "";
-    String DeckKarte2 = "";
-    String DeckKarte3 = "";
-    String DeckKarte4 = "";
+    public static String DeckKarte1 = "";
+    public static String DeckKarte2 = "";
+    public static String DeckKarte3 = "";
+    public static String DeckKarte4 = "";
     boolean Links = false, Rechts = false;
     public static boolean[] DeckKarte = new boolean[4];
     boolean Start = false;
     boolean Hauptspiel = false;
     boolean Ende = false;
-    boolean YouCanplay = true;
-    boolean[] the_4_KI_Player = new boolean[4];
-    int[] anzahlvonkarten = new int[4];
+    public static boolean YouCanplay = true;
+    public static boolean[] the_4_KI_Player = new boolean[4];
+    public static int[] anzahlvonkarten = new int[4];
     ImageIcon[] imagePic = new ImageIcon[8];
     Image imageBackground = null;
     Image imageHolz = null;
