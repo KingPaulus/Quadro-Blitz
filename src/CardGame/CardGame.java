@@ -22,25 +22,25 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
 
     int Breite = 900;
     int Hohe = 700;
-    int [] ArrayHand = new int [4];
+    public static int[] ArrayHand = new int[4];
     String HandKarte1 = "";
     String HandKarte2 = "";
     String HandKarte3 = "";
     String HandKarte4 = "";
-    int [] ArrayDeck = new int [4];
+    public static int[] ArrayDeck = new int[4];
     String DeckKarte1 = "";
     String DeckKarte2 = "";
     String DeckKarte3 = "";
     String DeckKarte4 = "";
     boolean Links = false, Rechts = false;
-    boolean [] DeckKarte = new boolean [4];
+    public static boolean[] DeckKarte = new boolean[4];
     boolean Start = false;
     boolean Hauptspiel = false;
     boolean Ende = false;
     boolean YouCanplay = true;
-    boolean [] the_4_KI_Player = new boolean[4];
-    int [] anzahlvonkarten = new int[4];
-    ImageIcon [] imagePic = new ImageIcon[8];
+    boolean[] the_4_KI_Player = new boolean[4];
+    int[] anzahlvonkarten = new int[4];
+    ImageIcon[] imagePic = new ImageIcon[8];
     Image imageBackground = null;
     Image imageHolz = null;
     Image imageDeckBackground = null;
@@ -113,9 +113,11 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             anzahlvonkarten[uuzz] = 4;
         }
         setImage();
-        Start = true;
+        Hauptspiel = true;
         repaint();
-    };
+    }
+
+    ;
 
     // Ordne dem Array wert einem String zu
     public String orderCardHand(int cardIndex) {
@@ -174,14 +176,13 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     }
 
 
-
-    public void paint (Graphics g) {
+    public void paint(Graphics g) {
         super.paint(g);
-        if (Start == true){
+        if (Start == true) {
             g.drawImage(StartScreen, 0, 0, Breite, Hohe, null);
             Start = false;
             Hauptspiel = true;
-        } else if(Hauptspiel == true) {
+        } else if (Hauptspiel == true) {
 
             // Card Border
             if (ArrayDeck[0] == 9) {
@@ -336,8 +337,6 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             }
 
 
-
-
             // Deck Karte 1
             if (ArrayDeck[0] != 0) {
                 int cardNumberPoseX = 150;
@@ -471,66 +470,67 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     }
 
     public int TimerInt = 0;
-    public void kiPlay () {
-        int rndm = (int)(Math.random()*5);
-        if(rndm < 0 || rndm == 0) {
+
+    public void kiPlay() {
+        int rndm = (int) (Math.random() * 5);
+        if (rndm < 0 || rndm == 0) {
             rndm = 1;
         }
-        if(rndm > 5) {
+        if (rndm > 5) {
             rndm = 5;
         }
         System.out.println("Ki Spiel zug " + rndm);
         Timer timer = new Timer();
-        if(rndm == 1) {
+        if (rndm == 1) {
             timer.scheduleAtFixedRate(new TimerTask() {
                 public void run() {
                     TimerInt++;
-                    if(TimerInt == 1) {
+                    if (TimerInt == 1) {
                         the_4_KI_Player[0] = false;
                         the_4_KI_Player[1] = true;
                         repaint();
                     }
-                    if(TimerInt == 2) {
+                    if (TimerInt == 2) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
                         repaint();
                     }
-                    if(TimerInt == 3) {
+                    if (TimerInt == 3) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
                         repaint();
                     }
-                    if(TimerInt == 5) {
+                    if (TimerInt == 5) {
                         the_4_KI_Player[1] = false;
                         the_4_KI_Player[2] = true;
                         repaint();
                     }
-                    if(TimerInt == 6) {
+                    if (TimerInt == 6) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
                         repaint();
                     }
-                    if(TimerInt == 7) {
+                    if (TimerInt == 7) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
                         repaint();
                     }
-                    if(TimerInt == 9) {
+                    if (TimerInt == 9) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
                         repaint();
                     }
-                    if(TimerInt == 10) {
+                    if (TimerInt == 10) {
                         the_4_KI_Player[2] = false;
                         the_4_KI_Player[3] = true;
                         repaint();
                     }
-                    if(TimerInt == 12) {
+                    if (TimerInt == 12) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
                         repaint();
                     }
-                    if(TimerInt > 13) {
+                    if (TimerInt > 13) {
                         System.out.println("Ende Play 1");
                         the_4_KI_Player[3] = false;
                         the_4_KI_Player[0] = true;
@@ -540,58 +540,58 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                         repaint();
                     }
                 }
-            }, 2*1000, 2*1000);
+            }, 2 * 1000, 2 * 1000);
         }
-        if(rndm == 2) {
+        if (rndm == 2) {
             timer.scheduleAtFixedRate(new TimerTask() {
                 public void run() {
                     TimerInt++;
-                    if(TimerInt == 1) {
+                    if (TimerInt == 1) {
                         the_4_KI_Player[0] = false;
                         the_4_KI_Player[1] = true;
                         repaint();
                     }
-                    if(TimerInt == 2) {
+                    if (TimerInt == 2) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
                         repaint();
                     }
-                    if(TimerInt == 3) {
+                    if (TimerInt == 3) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
                         repaint();
                     }
-                    if(TimerInt == 5) {
+                    if (TimerInt == 5) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
                         repaint();
                     }
-                    if(TimerInt == 6) {
+                    if (TimerInt == 6) {
                         the_4_KI_Player[1] = false;
                         the_4_KI_Player[2] = true;
                         repaint();
                     }
-                    if(TimerInt == 7) {
+                    if (TimerInt == 7) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
                         repaint();
                     }
-                    if(TimerInt == 9) {
+                    if (TimerInt == 9) {
                         ArrayDeck[1] = ArrayDeck[1] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
                         repaint();
                     }
-                    if(TimerInt == 10) {
+                    if (TimerInt == 10) {
                         ArrayDeck[1] = ArrayDeck[1] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
                         repaint();
                     }
-                    if(TimerInt == 12) {
+                    if (TimerInt == 12) {
                         the_4_KI_Player[2] = false;
                         the_4_KI_Player[3] = true;
                         repaint();
                     }
-                    if(TimerInt > 15) {
+                    if (TimerInt > 15) {
                         System.out.println("Ende Play 2");
                         the_4_KI_Player[3] = false;
                         the_4_KI_Player[0] = true;
@@ -601,53 +601,53 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                         repaint();
                     }
                 }
-            }, 2*1000, 2*1000);
+            }, 2 * 1000, 2 * 1000);
         }
-        if(rndm == 3) {
+        if (rndm == 3) {
             timer.scheduleAtFixedRate(new TimerTask() {
                 public void run() {
                     TimerInt++;
-                    if(TimerInt == 1) {
+                    if (TimerInt == 1) {
                         the_4_KI_Player[0] = false;
                         the_4_KI_Player[1] = true;
                         repaint();
                     }
-                    if(TimerInt == 3) {
+                    if (TimerInt == 3) {
                         the_4_KI_Player[1] = false;
                         the_4_KI_Player[2] = true;
                         repaint();
                     }
-                    if(TimerInt == 4) {
+                    if (TimerInt == 4) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
                         repaint();
                     }
-                    if(TimerInt == 5) {
+                    if (TimerInt == 5) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
                         repaint();
                     }
-                    if(TimerInt == 7) {
+                    if (TimerInt == 7) {
                         the_4_KI_Player[2] = false;
                         the_4_KI_Player[3] = true;
                         repaint();
                     }
-                    if(TimerInt == 8) {
+                    if (TimerInt == 8) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
                         repaint();
                     }
-                    if(TimerInt == 10) {
+                    if (TimerInt == 10) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
                         repaint();
                     }
-                    if(TimerInt == 11) {
+                    if (TimerInt == 11) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
                         repaint();
                     }
-                    if(TimerInt > 13) {
+                    if (TimerInt > 13) {
                         System.out.println("Ende Play 3");
                         the_4_KI_Player[3] = false;
                         the_4_KI_Player[0] = true;
@@ -657,48 +657,48 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                         repaint();
                     }
                 }
-            }, 2*1000, 2*1000);
+            }, 2 * 1000, 2 * 1000);
         }
-        if(rndm == 4) {
+        if (rndm == 4) {
             timer.scheduleAtFixedRate(new TimerTask() {
                 public void run() {
                     TimerInt++;
-                    if(TimerInt == 1) {
+                    if (TimerInt == 1) {
                         the_4_KI_Player[0] = false;
                         the_4_KI_Player[1] = true;
                         repaint();
                     }
-                    if(TimerInt == 3) {
+                    if (TimerInt == 3) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
                         repaint();
                     }
-                    if(TimerInt == 4) {
+                    if (TimerInt == 4) {
                         the_4_KI_Player[1] = false;
                         the_4_KI_Player[2] = true;
                         repaint();
                     }
-                    if(TimerInt == 5) {
+                    if (TimerInt == 5) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
                         repaint();
                     }
-                    if(TimerInt == 7) {
+                    if (TimerInt == 7) {
                         the_4_KI_Player[2] = false;
                         the_4_KI_Player[3] = true;
                         repaint();
                     }
-                    if(TimerInt == 8) {
+                    if (TimerInt == 8) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
                         repaint();
                     }
-                    if(TimerInt == 9) {
+                    if (TimerInt == 9) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
                         repaint();
                     }
-                    if(TimerInt > 11) {
+                    if (TimerInt > 11) {
                         System.out.println("Ende Play 4");
                         the_4_KI_Player[3] = false;
                         the_4_KI_Player[0] = true;
@@ -708,33 +708,33 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                         repaint();
                     }
                 }
-            }, 2*1000, 2*1000);
+            }, 2 * 1000, 2 * 1000);
         }
-        if(rndm == 5) {
+        if (rndm == 5) {
             timer.scheduleAtFixedRate(new TimerTask() {
                 public void run() {
                     TimerInt++;
-                    if(TimerInt == 1) {
+                    if (TimerInt == 1) {
                         the_4_KI_Player[0] = false;
                         the_4_KI_Player[1] = true;
                         repaint();
                     }
-                    if(TimerInt == 3) {
+                    if (TimerInt == 3) {
                         the_4_KI_Player[1] = false;
                         the_4_KI_Player[2] = true;
                         repaint();
                     }
-                    if(TimerInt == 4) {
+                    if (TimerInt == 4) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
                         repaint();
                     }
-                    if(TimerInt == 6) {
+                    if (TimerInt == 6) {
                         the_4_KI_Player[2] = false;
                         the_4_KI_Player[3] = true;
                         repaint();
                     }
-                    if(TimerInt > 8) {
+                    if (TimerInt > 8) {
                         System.out.println("Ende Play 5");
                         the_4_KI_Player[3] = false;
                         the_4_KI_Player[0] = true;
@@ -744,16 +744,15 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                         repaint();
                     }
                 }
-            }, 2*1000, 2*1000);
+            }, 2 * 1000, 2 * 1000);
         }
 
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-
     }
+
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -764,11 +763,11 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         }
 
     }
+
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
-
     }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         int x = e.getX();
@@ -776,65 +775,29 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         System.out.println("x = " + x + " | y = " + y);
         if (x > 400 && x < 445 && y > 390 && y < 440) {
             System.out.println("Links");
-            if(DeckKarte[0] == true) {
-                DeckKarte[0] = false;
-                DeckKarte[3] = true;
-            }
-            else if(DeckKarte[3] == true) {
-                DeckKarte[3] = false;
-                DeckKarte[2] = true;
-            }
-            else if(DeckKarte[2] == true) {
-                DeckKarte[2] = false;
-                DeckKarte[1] = true;
-            }
-            else if(DeckKarte[1] == true) {
-                DeckKarte[1] = false;
-                DeckKarte[0] = true;
-            }
-            else {
-                System.out.println("FEHLER LINKS");
-            }
+            MouseEvents.Selected_Deck_Field_to_Left();
             repaint();
         }
 
         if (x > 470 && x < 515 && y > 390 && y < 440) {
             System.out.println("Rechts");
-            if(DeckKarte[0] == true) {
-                DeckKarte[0] = false;
-                DeckKarte[1] = true;
-            }
-            else if(DeckKarte[1] == true) {
-                DeckKarte[1] = false;
-                DeckKarte[2] = true;
-            }
-            else if(DeckKarte[2] == true) {
-                DeckKarte[2] = false;
-                DeckKarte[3] = true;
-            }
-            else if(DeckKarte[3] == true) {
-                DeckKarte[3] = false;
-                DeckKarte[0] = true;
-            }
-            else {
-                System.out.println("FEHLER RECHTS");
-            }
+            MouseEvents.Selected_Deck_Field_to_Right();
             repaint();
         }
 
-        if(YouCanplay == true) {
+        if (YouCanplay == true) {
             if (x > 810 && x < 875 && y > 410 && y < 500) {
                 System.out.println("Mischen");
                 System.out.println("--------");
-                for(int MarvinLOL = 0;ArrayHand.length>MarvinLOL;MarvinLOL++) {
-                    int rndm = (int)(Math.random()*9);
-                    if(rndm == 0) {
+                for (int MarvinLOL = 0; ArrayHand.length > MarvinLOL; MarvinLOL++) {
+                    int rndm = (int) (Math.random() * 9);
+                    if (rndm == 0) {
                         rndm = 1;
                     }
 //					System.out.println("rndm = " + rndm);
                     ArrayHand[MarvinLOL] = rndm;
                 }
-                for(int uuzz = 0;uuzz<anzahlvonkarten.length;uuzz++) {
+                for (int uuzz = 0; uuzz < anzahlvonkarten.length; uuzz++) {
                     anzahlvonkarten[uuzz] = 4;
                 }
                 repaint();
@@ -845,502 +808,25 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         if (YouCanplay == true) {
             if (x > 145 && x < 285 && y > 480 && y < 675) {
                 // Karte 1
-                if(DeckKarte[0] == true) {
-                    if(ArrayDeck[0] == 0 && ArrayHand[0] == 1) {
-                        ArrayDeck[0] = 1;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[0] == 1 && ArrayHand[0] == 2) {
-                        ArrayDeck[0] = 2;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[0] == 2 && ArrayHand[0] == 3) {
-                        ArrayDeck[0] = 3;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[0] == 3 && ArrayHand[0] == 4) {
-                        ArrayDeck[0] = 4;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[0] == 4 && ArrayHand[0] == 5) {
-                        ArrayDeck[0] = 5;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[0] == 5 && ArrayHand[0] == 6) {
-                        ArrayDeck[0] = 6;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[0] == 6 && ArrayHand[0] == 7) {
-                        ArrayDeck[0] = 7;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[0] == 7 && ArrayHand[0] == 8) {
-                        ArrayDeck[0] = 8;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[0] == 8 && ArrayHand[0] == 9) {
-                        ArrayDeck[0] = 0;
-                        ArrayHand[0] = 0;
-                    }
-                }
-                if(DeckKarte[1] == true) {
-                    if(ArrayDeck[1] == 0 && ArrayHand[0] == 1) {
-                        ArrayDeck[1] = 1;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[0] == 1 && ArrayHand[0] == 2) {
-                        ArrayDeck[1] = 2;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[1] == 2 && ArrayHand[0] == 3) {
-                        ArrayDeck[1] = 3;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[1] == 3 && ArrayHand[0] == 4) {
-                        ArrayDeck[1] = 4;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[1] == 4 && ArrayHand[0] == 5) {
-                        ArrayDeck[1] = 5;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[1] == 5 && ArrayHand[0] == 6) {
-                        ArrayDeck[1] = 6;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[1] == 6 && ArrayHand[0] == 7) {
-                        ArrayDeck[1] = 7;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[1] == 7 && ArrayHand[0] == 8) {
-                        ArrayDeck[1] = 8;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[1] == 8 && ArrayHand[0] == 9) {
-                        ArrayDeck[1] = 0;
-                        ArrayHand[0] = 0;
-                    }
-                }
-                if(DeckKarte[2] == true) {
-                    if(ArrayDeck[2] == 0 && ArrayHand[0] == 1) {
-                        ArrayDeck[2] = 1;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[2] == 1 && ArrayHand[0] == 2) {
-                        ArrayDeck[2] = 2;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[2] == 2 && ArrayHand[0] == 3) {
-                        ArrayDeck[2] = 3;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[2] == 3 && ArrayHand[0] == 4) {
-                        ArrayDeck[2] = 4;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[2] == 4 && ArrayHand[0] == 5) {
-                        ArrayDeck[2] = 5;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[2] == 5 && ArrayHand[0] == 6) {
-                        ArrayDeck[2] = 6;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[2] == 6 && ArrayHand[0] == 7) {
-                        ArrayDeck[2] = 7;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[2] == 7 && ArrayHand[0] == 8) {
-                        ArrayDeck[2] = 8;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[2] == 8 && ArrayHand[0] == 9) {
-                        ArrayDeck[2] = 0;
-                        ArrayHand[0] = 0;
-                    }
-                }
-                if(DeckKarte[3] == true) {
-                    if(ArrayDeck[3] == 0 && ArrayHand[0] == 1) {
-                        ArrayDeck[3] = 1;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[3] == 1 && ArrayHand[0] == 2) {
-                        ArrayDeck[3] = 2;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[3] == 2 && ArrayHand[0] == 3) {
-                        ArrayDeck[3] = 3;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[3] == 3 && ArrayHand[0] == 4) {
-                        ArrayDeck[3] = 4;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[3] == 4 && ArrayHand[0] == 5) {
-                        ArrayDeck[3] = 5;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[3] == 5 && ArrayHand[0] == 6) {
-                        ArrayDeck[3] = 6;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[3] == 6 && ArrayHand[0] == 7) {
-                        ArrayDeck[3] = 7;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[3] == 7 && ArrayHand[0] == 8) {
-                        ArrayDeck[3] = 8;
-                        ArrayHand[0] = 0;
-                    } else if(ArrayDeck[3] == 8 && ArrayHand[0] == 9) {
-                        ArrayDeck[3] = 0;
-                        ArrayHand[0] = 0;
-                    }
-                }
-                repaint();
+                MouseEvents.PlayCard(0);
             }
+            repaint();
             if (x > 300 && x < 435 && y > 480 && y < 675) {
                 // Karte 2
-                if(DeckKarte[0] == true) {
-                    if(ArrayDeck[0] == 0 && ArrayHand[1] == 1) {
-                        ArrayDeck[0] = 1;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[0] == 1 && ArrayHand[1] == 2) {
-                        ArrayDeck[0] = 2;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[0] == 2 && ArrayHand[1] == 3) {
-                        ArrayDeck[0] = 3;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[0] == 3 && ArrayHand[1] == 4) {
-                        ArrayDeck[0] = 4;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[0] == 4 && ArrayHand[1] == 5) {
-                        ArrayDeck[0] = 5;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[0] == 5 && ArrayHand[1] == 6) {
-                        ArrayDeck[0] = 6;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[0] == 6 && ArrayHand[1] == 7) {
-                        ArrayDeck[0] = 7;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[0] == 7 && ArrayHand[1] == 8) {
-                        ArrayDeck[0] = 8;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[0] == 8 && ArrayHand[1] == 9) {
-                        ArrayDeck[0] = 0;
-                        ArrayHand[1] = 0;
-                    }
-                }
-                if(DeckKarte[1] == true) {
-                    if(ArrayDeck[1] == 0 && ArrayHand[1] == 1) {
-                        ArrayDeck[1] = 1;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[1] == 1 && ArrayHand[1] == 2) {
-                        ArrayDeck[1] = 2;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[1] == 2 && ArrayHand[1] == 3) {
-                        ArrayDeck[1] = 3;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[1] == 3 && ArrayHand[1] == 4) {
-                        ArrayDeck[1] = 4;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[1] == 4 && ArrayHand[1] == 5) {
-                        ArrayDeck[1] = 5;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[1] == 5 && ArrayHand[1] == 6) {
-                        ArrayDeck[1] = 6;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[1] == 6 && ArrayHand[1] == 7) {
-                        ArrayDeck[1] = 7;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[1] == 7 && ArrayHand[1] == 8) {
-                        ArrayDeck[1] = 8;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[1] == 8 && ArrayHand[1] == 9) {
-                        ArrayDeck[1] = 0;
-                        ArrayHand[1] = 0;
-                    }
-                }
-                if(DeckKarte[2] == true) {
-                    if(ArrayDeck[2] == 0 && ArrayHand[1] == 1) {
-                        ArrayDeck[2] = 1;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[2] == 1 && ArrayHand[1] == 2) {
-                        ArrayDeck[2] = 2;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[2] == 2 && ArrayHand[1] == 3) {
-                        ArrayDeck[2] = 3;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[2] == 3 && ArrayHand[1] == 4) {
-                        ArrayDeck[2] = 4;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[2] == 4 && ArrayHand[1] == 5) {
-                        ArrayDeck[2] = 5;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[2] == 5 && ArrayHand[1] == 6) {
-                        ArrayDeck[2] = 6;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[2] == 6 && ArrayHand[1] == 7) {
-                        ArrayDeck[2] = 7;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[2] == 7 && ArrayHand[1] == 8) {
-                        ArrayDeck[2] = 8;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[2] == 8 && ArrayHand[1] == 9) {
-                        ArrayDeck[2] = 0;
-                        ArrayHand[1] = 0;
-                    }
-                }
-                if(DeckKarte[3] == true) {
-                    if(ArrayDeck[3] == 0 && ArrayHand[1] == 1) {
-                        ArrayDeck[3] = 1;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[3] == 1 && ArrayHand[1] == 2) {
-                        ArrayDeck[3] = 2;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[3] == 2 && ArrayHand[1] == 3) {
-                        ArrayDeck[3] = 3;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[3] == 3 && ArrayHand[1] == 4) {
-                        ArrayDeck[3] = 4;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[3] == 4 && ArrayHand[1] == 5) {
-                        ArrayDeck[3] = 5;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[3] == 5 && ArrayHand[1] == 6) {
-                        ArrayDeck[3] = 6;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[3] == 6 && ArrayHand[1] == 7) {
-                        ArrayDeck[3] = 7;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[3] == 7 && ArrayHand[1] == 8) {
-                        ArrayDeck[3] = 8;
-                        ArrayHand[1] = 0;
-                    } else if(ArrayDeck[3] == 8 && ArrayHand[1] == 9) {
-                        ArrayDeck[3] = 0;
-                        ArrayHand[1] = 0;
-                    }
-                }
+                MouseEvents.PlayCard(1);
                 repaint();
             }
             if (x > 450 && x < 585 && y > 480 && y < 675) {
                 // Karte 3
-                if(DeckKarte[0] == true) {
-                    if(ArrayDeck[0] == 0 && ArrayHand[2] == 1) {
-                        ArrayDeck[0] = 1;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[0] == 1 && ArrayHand[2] == 2) {
-                        ArrayDeck[0] = 2;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[0] == 2 && ArrayHand[2] == 3) {
-                        ArrayDeck[0] = 3;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[0] == 3 && ArrayHand[2] == 4) {
-                        ArrayDeck[0] = 4;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[0] == 4 && ArrayHand[2] == 5) {
-                        ArrayDeck[0] = 5;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[0] == 5 && ArrayHand[2] == 6) {
-                        ArrayDeck[0] = 6;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[0] == 6 && ArrayHand[2] == 7) {
-                        ArrayDeck[0] = 7;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[0] == 7 && ArrayHand[2] == 8) {
-                        ArrayDeck[0] = 8;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[0] == 8 && ArrayHand[2] == 9) {
-                        ArrayDeck[0] = 0;
-                        ArrayHand[2] = 0;
-                    }
-                }
-                if(DeckKarte[1] == true) {
-                    if(ArrayDeck[1] == 0 && ArrayHand[2] == 1) {
-                        ArrayDeck[1] = 1;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[0] == 1 && ArrayHand[2] == 2) {
-                        ArrayDeck[1] = 2;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[1] == 2 && ArrayHand[2] == 3) {
-                        ArrayDeck[1] = 3;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[1] == 3 && ArrayHand[2] == 4) {
-                        ArrayDeck[1] = 4;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[1] == 4 && ArrayHand[2] == 5) {
-                        ArrayDeck[1] = 5;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[1] == 5 && ArrayHand[2] == 6) {
-                        ArrayDeck[1] = 6;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[1] == 6 && ArrayHand[2] == 7) {
-                        ArrayDeck[1] = 7;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[1] == 7 && ArrayHand[2] == 8) {
-                        ArrayDeck[1] = 8;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[1] == 8 && ArrayHand[2] == 9) {
-                        ArrayDeck[1] = 0;
-                        ArrayHand[2] = 0;
-                    }
-                }
-                if(DeckKarte[2] == true) {
-                    if(ArrayDeck[2] == 0 && ArrayHand[2] == 1) {
-                        ArrayDeck[2] = 1;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[2] == 1 && ArrayHand[2] == 2) {
-                        ArrayDeck[2] = 2;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[2] == 2 && ArrayHand[2] == 3) {
-                        ArrayDeck[2] = 3;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[2] == 3 && ArrayHand[2] == 4) {
-                        ArrayDeck[2] = 4;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[2] == 4 && ArrayHand[2] == 5) {
-                        ArrayDeck[2] = 5;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[2] == 5 && ArrayHand[2] == 6) {
-                        ArrayDeck[2] = 6;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[2] == 6 && ArrayHand[2] == 7) {
-                        ArrayDeck[2] = 7;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[2] == 7 && ArrayHand[2] == 8) {
-                        ArrayDeck[2] = 8;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[2] == 8 && ArrayHand[2] == 9) {
-                        ArrayDeck[2] = 0;
-                        ArrayHand[2] = 0;
-                    }
-                }
-                if(DeckKarte[3] == true) {
-                    if(ArrayDeck[3] == 0 && ArrayHand[2] == 1) {
-                        ArrayDeck[3] = 1;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[3] == 1 && ArrayHand[2] == 2) {
-                        ArrayDeck[3] = 2;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[3] == 2 && ArrayHand[2] == 3) {
-                        ArrayDeck[3] = 3;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[3] == 3 && ArrayHand[2] == 4) {
-                        ArrayDeck[3] = 4;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[3] == 4 && ArrayHand[2] == 5) {
-                        ArrayDeck[3] = 5;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[3] == 5 && ArrayHand[2] == 6) {
-                        ArrayDeck[3] = 6;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[3] == 6 && ArrayHand[2] == 7) {
-                        ArrayDeck[3] = 7;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[3] == 7 && ArrayHand[2] == 8) {
-                        ArrayDeck[3] = 8;
-                        ArrayHand[2] = 0;
-                    } else if(ArrayDeck[3] == 8 && ArrayHand[2] == 9) {
-                        ArrayDeck[3] = 0;
-                        ArrayHand[2] = 0;
-                    }
-                }
+                MouseEvents.PlayCard(2);
                 repaint();
             }
             if (x > 600 && x < 735 && y > 480 && y < 675) {
-                // Karte 1
-                if(DeckKarte[0] == true) {
-                    if(ArrayDeck[0] == 0 && ArrayHand[3] == 1) {
-                        ArrayDeck[0] = 1;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[0] == 1 && ArrayHand[3] == 2) {
-                        ArrayDeck[0] = 2;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[0] == 2 && ArrayHand[3] == 3) {
-                        ArrayDeck[0] = 3;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[0] == 3 && ArrayHand[3] == 4) {
-                        ArrayDeck[0] = 4;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[0] == 4 && ArrayHand[3] == 5) {
-                        ArrayDeck[0] = 5;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[0] == 5 && ArrayHand[3] == 6) {
-                        ArrayDeck[0] = 6;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[0] == 6 && ArrayHand[3] == 7) {
-                        ArrayDeck[0] = 7;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[0] == 7 && ArrayHand[3] == 8) {
-                        ArrayDeck[0] = 8;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[0] == 8 && ArrayHand[3] == 9) {
-                        ArrayDeck[0] = 0;
-                        ArrayHand[3] = 0;
-                    }
-                }
-                if(DeckKarte[1] == true) {
-                    if(ArrayDeck[1] == 0 && ArrayHand[3] == 1) {
-                        ArrayDeck[1] = 1;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[0] == 1 && ArrayHand[3] == 2) {
-                        ArrayDeck[1] = 2;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[1] == 2 && ArrayHand[3] == 3) {
-                        ArrayDeck[1] = 3;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[1] == 3 && ArrayHand[3] == 4) {
-                        ArrayDeck[1] = 4;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[1] == 4 && ArrayHand[3] == 5) {
-                        ArrayDeck[1] = 5;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[1] == 5 && ArrayHand[3] == 6) {
-                        ArrayDeck[1] = 6;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[1] == 6 && ArrayHand[3] == 7) {
-                        ArrayDeck[1] = 7;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[1] == 7 && ArrayHand[3] == 8) {
-                        ArrayDeck[1] = 8;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[1] == 8 && ArrayHand[3] == 9) {
-                        ArrayDeck[1] = 0;
-                        ArrayHand[3] = 0;
-                    }
-                }
-                if(DeckKarte[2] == true) {
-                    if(ArrayDeck[2] == 0 && ArrayHand[3] == 1) {
-                        ArrayDeck[2] = 1;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[2] == 1 && ArrayHand[3] == 2) {
-                        ArrayDeck[2] = 2;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[2] == 2 && ArrayHand[3] == 3) {
-                        ArrayDeck[2] = 3;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[2] == 3 && ArrayHand[3] == 4) {
-                        ArrayDeck[2] = 4;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[2] == 4 && ArrayHand[3] == 5) {
-                        ArrayDeck[2] = 5;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[2] == 5 && ArrayHand[3] == 6) {
-                        ArrayDeck[2] = 6;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[2] == 6 && ArrayHand[3] == 7) {
-                        ArrayDeck[2] = 7;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[2] == 7 && ArrayHand[3] == 8) {
-                        ArrayDeck[2] = 8;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[2] == 8 && ArrayHand[3] == 9) {
-                        ArrayDeck[2] = 0;
-                        ArrayHand[3] = 0;
-                    }
-                }
-                if(DeckKarte[3] == true) {
-                    if(ArrayDeck[3] == 0 && ArrayHand[3] == 1) {
-                        ArrayDeck[3] = 1;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[3] == 1 && ArrayHand[3] == 2) {
-                        ArrayDeck[3] = 2;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[3] == 2 && ArrayHand[3] == 3) {
-                        ArrayDeck[3] = 3;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[3] == 3 && ArrayHand[3] == 4) {
-                        ArrayDeck[3] = 4;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[3] == 4 && ArrayHand[3] == 5) {
-                        ArrayDeck[3] = 5;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[3] == 5 && ArrayHand[3] == 6) {
-                        ArrayDeck[3] = 6;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[3] == 6 && ArrayHand[3] == 7) {
-                        ArrayDeck[3] = 7;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[3] == 7 && ArrayHand[3] == 8) {
-                        ArrayDeck[3] = 8;
-                        ArrayHand[3] = 0;
-                    } else if(ArrayDeck[3] == 8 && ArrayHand[3] == 9) {
-                        ArrayDeck[3] = 0;
-                        ArrayHand[3] = 0;
-                    }
-                }
+                // Karte 4
+                MouseEvents.PlayCard(3);
                 repaint();
             }
         }
-
     }
     @Override
     public void mousePressed(MouseEvent e) {
