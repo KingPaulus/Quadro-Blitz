@@ -1,5 +1,5 @@
-# Karten Spiel
-Entwickelt von KingPaulus
+# Quadro-Blitz
+Entwickelt von [@KingPaulus](https://github.com/KingPaulus)
 
 Diese ist ein kleines Java Karten Spiel um zeit zu vertreiben.
 Es wurde Entwickelt in Java.
