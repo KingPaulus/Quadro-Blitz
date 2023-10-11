@@ -38,7 +38,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     public static boolean YouCanplay = true;
     public static boolean[] the_4_KI_Player = new boolean[4];
     public static int[] anzahlvonkarten = new int[4];
-    ImageIcon[] imagePic = new ImageIcon[12];
+    ImageIcon[] imagePic = new ImageIcon[13];
     Image imageBackground = null;
     Image imageHolz = null;
     Image imageDeckBackground = null;
@@ -51,6 +51,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     Image opponentPic2 = null;
     Image opponentPic3 = null;
     Image StartScreen = null;
+    Image EndScreen = null;
 
     public CardGame() {
         JFrame frame = new JFrame("Kartenspiel");
@@ -90,6 +91,8 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         opponentPic2 = imagePic[10].getImage();
         imagePic[11] = new ImageIcon("image/KIPlayer3.png");
         opponentPic3 = imagePic[11].getImage();
+        imagePic[12] = new ImageIcon("image/WinScreen.png");
+        EndScreen = imagePic[12].getImage();
 
     }
 
@@ -117,6 +120,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             System.out.println("rndm = " + rndm);
             ArrayHand[MarvinLOL] = rndm;
         }
+        
         for (int Hallo = 0; Hallo < ArrayDeck.length; Hallo++) {
             ArrayDeck[Hallo] = 0;
         }
@@ -465,14 +469,13 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                 zzu[3] = zzu[3] + 5;
             }
             if (ArrayHand[0] == 0 && ArrayHand[1] == 0 && ArrayHand[2] == 0 && ArrayHand[3] == 0) {
-                System.out.println("WIN");
-                g.setColor(Color.BLUE);
-                g.fillRect(0, 0, Breite, Hohe);
-                g.setColor(Color.WHITE);
-                g.setFont(new Font("Franklin Gothic Demi Italic", 4, 260));
-                g.drawString("WIN", 300, 400);
+                Hauptspiel = false;
+                Ende = true;
                 YouCanplay = false;
+                repaint();
             }
+        } else if (Ende == true) {
+            g.drawImage(EndScreen, 0, 0, Breite, Hohe, null);
         }
     }
 
@@ -566,6 +569,8 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                     repaint();
                 }
             }
+        } else if(Ende == true) {
+
         }
     }
     @Override
