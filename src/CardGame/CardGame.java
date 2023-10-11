@@ -15,8 +15,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class CardGame extends JPanel implements ActionListener, MouseListener, KeyListener {
 
@@ -28,19 +26,19 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     String HandKarte3 = "";
     String HandKarte4 = "";
     public static int[] ArrayDeck = new int[4];
-    String DeckKarte1 = "";
-    String DeckKarte2 = "";
-    String DeckKarte3 = "";
-    String DeckKarte4 = "";
+    public static String DeckKarte1 = "";
+    public static String DeckKarte2 = "";
+    public static String DeckKarte3 = "";
+    public static String DeckKarte4 = "";
     boolean Links = false, Rechts = false;
     public static boolean[] DeckKarte = new boolean[4];
     boolean Start = false;
     boolean Hauptspiel = false;
     boolean Ende = false;
-    boolean YouCanplay = true;
-    boolean[] the_4_KI_Player = new boolean[4];
-    int[] anzahlvonkarten = new int[4];
-    ImageIcon[] imagePic = new ImageIcon[8];
+    public static boolean YouCanplay = true;
+    public static boolean[] the_4_KI_Player = new boolean[4];
+    public static int[] anzahlvonkarten = new int[4];
+    ImageIcon[] imagePic = new ImageIcon[13];
     Image imageBackground = null;
     Image imageHolz = null;
     Image imageDeckBackground = null;
@@ -48,7 +46,12 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     Image imageKarte = null;
     Image imageDeck = null;
     Image imageStaple = null;
+    Image YouPic = null;
+    Image opponentPic1 = null;
+    Image opponentPic2 = null;
+    Image opponentPic3 = null;
     Image StartScreen = null;
+    Image EndScreen = null;
 
     public CardGame() {
         JFrame frame = new JFrame("Kartenspiel");
@@ -80,6 +83,17 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         imageHandBackground = imagePic[6].getImage();
         imagePic[7] = new ImageIcon("image/StartScreen.png");
         StartScreen = imagePic[7].getImage();
+        imagePic[8] = new ImageIcon("image/YouPlayer.png");
+        YouPic = imagePic[8].getImage();
+        imagePic[9] = new ImageIcon("image/KIPlayer1.png");
+        opponentPic1 = imagePic[9].getImage();
+        imagePic[10] = new ImageIcon("image/KIPlayer2.png");
+        opponentPic2 = imagePic[10].getImage();
+        imagePic[11] = new ImageIcon("image/KIPlayer3.png");
+        opponentPic3 = imagePic[11].getImage();
+        imagePic[12] = new ImageIcon("image/WinScreen.png");
+        EndScreen = imagePic[12].getImage();
+
     }
 
     public void initializeGame() {
@@ -106,6 +120,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             System.out.println("rndm = " + rndm);
             ArrayHand[MarvinLOL] = rndm;
         }
+        
         for (int Hallo = 0; Hallo < ArrayDeck.length; Hallo++) {
             ArrayDeck[Hallo] = 0;
         }
@@ -400,39 +415,37 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             }
             g.drawImage(imageStaple, 798, 378, 74, 94, null);
 
+
+            // TODO
             // Spieler Kreise
             g.setColor(Color.BLACK);
             g.fillOval(75, 5, 60, 60);
             g.fillOval(145, 5, 60, 60);
             g.fillOval(215, 5, 60, 60);
             g.fillOval(285, 5, 60, 60);
-
-            // TODO
-            // KI Spieler Board
-            g.setColor(Color.BLUE);
-            g.fillOval(80, 10, 50, 50);
             if (the_4_KI_Player[0]) {
                 g.setColor(Color.green);
-                g.fillOval(80, 10, 50, 50);
+                g.fillOval(75, 5, 60, 60);
             }
-            g.setColor(Color.BLUE);
-            g.fillOval(150, 10, 50, 50);
             if (the_4_KI_Player[1]) {
                 g.setColor(Color.green);
-                g.fillOval(150, 10, 50, 50);
+                g.fillOval(145, 5, 60, 60);
             }
-            g.setColor(Color.BLUE);
-            g.fillOval(220, 10, 50, 50);
             if (the_4_KI_Player[2]) {
                 g.setColor(Color.green);
-                g.fillOval(220, 10, 50, 50);
+                g.fillOval(215, 5, 60, 60);
             }
-            g.setColor(Color.BLUE);
-            g.fillOval(290, 10, 50, 50);
             if (the_4_KI_Player[3]) {
                 g.setColor(Color.green);
-                g.fillOval(290, 10, 50, 50);
+                g.fillOval(285, 5, 60, 60);
             }
+
+            // Spieler Bilder
+            g.drawImage(YouPic, 80, 10, 50, 50, null);
+            g.drawImage(opponentPic1, 150, 10, 50, 50, null);
+            g.drawImage(opponentPic2, 220, 10, 50, 50, null);
+            g.drawImage(opponentPic3, 290, 10, 50, 50, null);
+
 
             int[] zzu = new int[4];
             zzu[0] = 80;
@@ -456,295 +469,14 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                 zzu[3] = zzu[3] + 5;
             }
             if (ArrayHand[0] == 0 && ArrayHand[1] == 0 && ArrayHand[2] == 0 && ArrayHand[3] == 0) {
-                System.out.println("WIN");
-                g.setColor(Color.BLUE);
-                g.fillRect(0, 0, Breite, Hohe);
-                g.setColor(Color.WHITE);
-                g.setFont(new Font("Franklin Gothic Demi Italic", 4, 260));
-                g.drawString("WIN", 300, 400);
+                Hauptspiel = false;
+                Ende = true;
                 YouCanplay = false;
+                repaint();
             }
+        } else if (Ende == true) {
+            g.drawImage(EndScreen, 0, 0, Breite, Hohe, null);
         }
-    }
-
-    public int TimerInt = 0;
-
-    public void kiPlay() {
-        int rndm = (int) (Math.random() * 5);
-        if (rndm < 0 || rndm == 0) {
-            rndm = 1;
-        }
-        if (rndm > 5) {
-            rndm = 5;
-        }
-        System.out.println("Ki Spiel zug " + rndm);
-        Timer timer = new Timer();
-        if (rndm == 1) {
-            timer.scheduleAtFixedRate(new TimerTask() {
-                public void run() {
-                    TimerInt++;
-                    if (TimerInt == 1) {
-                        the_4_KI_Player[0] = false;
-                        the_4_KI_Player[1] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 2) {
-                        ArrayDeck[0] = ArrayDeck[0] + 1;
-                        anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 3) {
-                        ArrayDeck[3] = ArrayDeck[3] + 1;
-                        anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 5) {
-                        the_4_KI_Player[1] = false;
-                        the_4_KI_Player[2] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 6) {
-                        ArrayDeck[3] = ArrayDeck[3] + 1;
-                        anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 7) {
-                        ArrayDeck[3] = ArrayDeck[3] + 1;
-                        anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 9) {
-                        ArrayDeck[2] = ArrayDeck[2] + 1;
-                        anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 10) {
-                        the_4_KI_Player[2] = false;
-                        the_4_KI_Player[3] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 12) {
-                        ArrayDeck[0] = ArrayDeck[0] + 1;
-                        anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        repaint();
-                    }
-                    if (TimerInt > 13) {
-                        System.out.println("Ende Play 1");
-                        the_4_KI_Player[3] = false;
-                        the_4_KI_Player[0] = true;
-                        TimerInt = 0;
-                        timer.cancel();
-                        YouCanplay = true;
-                        repaint();
-                    }
-                }
-            }, 2 * 1000, 2 * 1000);
-        }
-        if (rndm == 2) {
-            timer.scheduleAtFixedRate(new TimerTask() {
-                public void run() {
-                    TimerInt++;
-                    if (TimerInt == 1) {
-                        the_4_KI_Player[0] = false;
-                        the_4_KI_Player[1] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 2) {
-                        ArrayDeck[0] = ArrayDeck[0] + 1;
-                        anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 3) {
-                        ArrayDeck[0] = ArrayDeck[0] + 1;
-                        anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 5) {
-                        ArrayDeck[3] = ArrayDeck[3] + 1;
-                        anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 6) {
-                        the_4_KI_Player[1] = false;
-                        the_4_KI_Player[2] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 7) {
-                        ArrayDeck[2] = ArrayDeck[2] + 1;
-                        anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 9) {
-                        ArrayDeck[1] = ArrayDeck[1] + 1;
-                        anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 10) {
-                        ArrayDeck[1] = ArrayDeck[1] + 1;
-                        anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 12) {
-                        the_4_KI_Player[2] = false;
-                        the_4_KI_Player[3] = true;
-                        repaint();
-                    }
-                    if (TimerInt > 15) {
-                        System.out.println("Ende Play 2");
-                        the_4_KI_Player[3] = false;
-                        the_4_KI_Player[0] = true;
-                        TimerInt = 0;
-                        timer.cancel();
-                        YouCanplay = true;
-                        repaint();
-                    }
-                }
-            }, 2 * 1000, 2 * 1000);
-        }
-        if (rndm == 3) {
-            timer.scheduleAtFixedRate(new TimerTask() {
-                public void run() {
-                    TimerInt++;
-                    if (TimerInt == 1) {
-                        the_4_KI_Player[0] = false;
-                        the_4_KI_Player[1] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 3) {
-                        the_4_KI_Player[1] = false;
-                        the_4_KI_Player[2] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 4) {
-                        ArrayDeck[2] = ArrayDeck[2] + 1;
-                        anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 5) {
-                        ArrayDeck[0] = ArrayDeck[0] + 1;
-                        anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 7) {
-                        the_4_KI_Player[2] = false;
-                        the_4_KI_Player[3] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 8) {
-                        ArrayDeck[2] = ArrayDeck[2] + 1;
-                        anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 10) {
-                        ArrayDeck[2] = ArrayDeck[2] + 1;
-                        anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 11) {
-                        ArrayDeck[2] = ArrayDeck[2] + 1;
-                        anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        repaint();
-                    }
-                    if (TimerInt > 13) {
-                        System.out.println("Ende Play 3");
-                        the_4_KI_Player[3] = false;
-                        the_4_KI_Player[0] = true;
-                        TimerInt = 0;
-                        timer.cancel();
-                        YouCanplay = true;
-                        repaint();
-                    }
-                }
-            }, 2 * 1000, 2 * 1000);
-        }
-        if (rndm == 4) {
-            timer.scheduleAtFixedRate(new TimerTask() {
-                public void run() {
-                    TimerInt++;
-                    if (TimerInt == 1) {
-                        the_4_KI_Player[0] = false;
-                        the_4_KI_Player[1] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 3) {
-                        ArrayDeck[3] = ArrayDeck[3] + 1;
-                        anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 4) {
-                        the_4_KI_Player[1] = false;
-                        the_4_KI_Player[2] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 5) {
-                        ArrayDeck[0] = ArrayDeck[0] + 1;
-                        anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 7) {
-                        the_4_KI_Player[2] = false;
-                        the_4_KI_Player[3] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 8) {
-                        ArrayDeck[2] = ArrayDeck[2] + 1;
-                        anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 9) {
-                        ArrayDeck[2] = ArrayDeck[2] + 1;
-                        anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        repaint();
-                    }
-                    if (TimerInt > 11) {
-                        System.out.println("Ende Play 4");
-                        the_4_KI_Player[3] = false;
-                        the_4_KI_Player[0] = true;
-                        TimerInt = 0;
-                        timer.cancel();
-                        YouCanplay = true;
-                        repaint();
-                    }
-                }
-            }, 2 * 1000, 2 * 1000);
-        }
-        if (rndm == 5) {
-            timer.scheduleAtFixedRate(new TimerTask() {
-                public void run() {
-                    TimerInt++;
-                    if (TimerInt == 1) {
-                        the_4_KI_Player[0] = false;
-                        the_4_KI_Player[1] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 3) {
-                        the_4_KI_Player[1] = false;
-                        the_4_KI_Player[2] = true;
-                        repaint();
-                    }
-                    if (TimerInt == 4) {
-                        ArrayDeck[3] = ArrayDeck[3] + 1;
-                        anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        repaint();
-                    }
-                    if (TimerInt == 6) {
-                        the_4_KI_Player[2] = false;
-                        the_4_KI_Player[3] = true;
-                        repaint();
-                    }
-                    if (TimerInt > 8) {
-                        System.out.println("Ende Play 5");
-                        the_4_KI_Player[3] = false;
-                        the_4_KI_Player[0] = true;
-                        TimerInt = 0;
-                        timer.cancel();
-                        YouCanplay = true;
-                        repaint();
-                    }
-                }
-            }, 2 * 1000, 2 * 1000);
-        }
-
     }
 
     @Override
@@ -776,9 +508,9 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                 System.out.println("Start");
                 Start = false;
                 Hauptspiel = true;
+                repaint();
             }
-        }
-        if (YouCanplay == true && Hauptspiel == true) {
+        } else if (Hauptspiel == true) {
 
             if (x > 400 && x < 445 && y > 390 && y < 440) {
                 System.out.println("Links");
@@ -792,44 +524,53 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                 repaint();
             }
 
-            if (x > 810 && x < 875 && y > 410 && y < 500) {
-                System.out.println("Mischen");
-                System.out.println("--------");
-                for (int MarvinLOL = 0; ArrayHand.length > MarvinLOL; MarvinLOL++) {
-                    int rndm = (int) (Math.random() * 9);
-                    if (rndm == 0) {
-                        rndm = 1;
-                    }
-                    ArrayHand[MarvinLOL] = rndm;
-                }
-                for (int uuzz = 0; uuzz < anzahlvonkarten.length; uuzz++) {
-                    anzahlvonkarten[uuzz] = 4;
-                }
-                repaint();
-                YouCanplay = false;
-                kiPlay();
-            }
+            if(YouCanplay == true) {
 
-            if (x > 145 && x < 285 && y > 480 && y < 675) {
-                // Karte 1
-                MouseEvents.PlayCard(0);
+                if (x > 810 && x < 875 && y > 410 && y < 500) {
+                    System.out.println("Mischen");
+                    System.out.println("--------");
+                    for (int MarvinLOL = 0; ArrayHand.length > MarvinLOL; MarvinLOL++) {
+                        int rndm = (int) (Math.random() * 9);
+                        if (rndm == 0) {
+                            rndm = 1;
+                        }
+                        ArrayHand[MarvinLOL] = rndm;
+                    }
+                    for (int uuzz = 0; uuzz < anzahlvonkarten.length; uuzz++) {
+                        anzahlvonkarten[uuzz] = 4;
+                    }
+                    repaint();
+                    YouCanplay = false;
+                    KiOpponent.kiPlay(this);
+                }
+
+                if (x > 145 && x < 285 && y > 480 && y < 675) {
+                    // Karte 1
+                    System.out.println("Play Karte 1");
+                    MouseEvents.PlayCard(0);
+                    repaint();
+                }
+                if (x > 300 && x < 435 && y > 480 && y < 675) {
+                    // Karte 2
+                    System.out.println("Play Karte 2");
+                    MouseEvents.PlayCard(1);
+                    repaint();
+                }
+                if (x > 450 && x < 585 && y > 480 && y < 675) {
+                    // Karte 3
+                    System.out.println("Play Karte 3");
+                    MouseEvents.PlayCard(2);
+                    repaint();
+                }
+                if (x > 600 && x < 735 && y > 480 && y < 675) {
+                    // Karte 4
+                    System.out.println("Play Karte 4");
+                    MouseEvents.PlayCard(3);
+                    repaint();
+                }
             }
-            repaint();
-            if (x > 300 && x < 435 && y > 480 && y < 675) {
-                // Karte 2
-                MouseEvents.PlayCard(1);
-                repaint();
-            }
-            if (x > 450 && x < 585 && y > 480 && y < 675) {
-                // Karte 3
-                MouseEvents.PlayCard(2);
-                repaint();
-            }
-            if (x > 600 && x < 735 && y > 480 && y < 675) {
-                // Karte 4
-                MouseEvents.PlayCard(3);
-                repaint();
-            }
+        } else if(Ende == true) {
+
         }
     }
     @Override
