@@ -1,5 +1,6 @@
 package CardGame;
 
+import javax.swing.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,7 +10,7 @@ public class KiOpponent {
 
     public static int TimerInt = 0;
 
-    public static void kiPlay() {
+    public static void kiPlay(JPanel panel) {
         int rndm = (int) (Math.random() * 5);
         if (rndm < 0 || rndm == 0) {
             rndm = 1;
@@ -26,47 +27,47 @@ public class KiOpponent {
                     if (TimerInt == 1) {
                         the_4_KI_Player[0] = false;
                         the_4_KI_Player[1] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 2) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 3) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 5) {
                         the_4_KI_Player[1] = false;
                         the_4_KI_Player[2] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 6) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 7) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 9) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 10) {
                         the_4_KI_Player[2] = false;
                         the_4_KI_Player[3] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 12) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt > 13) {
                         System.out.println("Ende Play 1");
@@ -75,7 +76,7 @@ public class KiOpponent {
                         TimerInt = 0;
                         timer.cancel();
                         YouCanplay = true;
-                        
+                        panel.repaint();
                     }
                 }
             }, 2 * 1000, 2 * 1000);
@@ -87,47 +88,47 @@ public class KiOpponent {
                     if (TimerInt == 1) {
                         the_4_KI_Player[0] = false;
                         the_4_KI_Player[1] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 2) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 3) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 5) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 6) {
                         the_4_KI_Player[1] = false;
                         the_4_KI_Player[2] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 7) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 9) {
                         ArrayDeck[1] = ArrayDeck[1] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 10) {
                         ArrayDeck[1] = ArrayDeck[1] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 12) {
                         the_4_KI_Player[2] = false;
                         the_4_KI_Player[3] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt > 15) {
                         System.out.println("Ende Play 2");
@@ -136,7 +137,7 @@ public class KiOpponent {
                         TimerInt = 0;
                         timer.cancel();
                         YouCanplay = true;
-                        
+                        panel.repaint();
                     }
                 }
             }, 2 * 1000, 2 * 1000);
@@ -148,42 +149,42 @@ public class KiOpponent {
                     if (TimerInt == 1) {
                         the_4_KI_Player[0] = false;
                         the_4_KI_Player[1] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 3) {
                         the_4_KI_Player[1] = false;
                         the_4_KI_Player[2] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 4) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 5) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 7) {
                         the_4_KI_Player[2] = false;
                         the_4_KI_Player[3] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 8) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 10) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 11) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt > 13) {
                         System.out.println("Ende Play 3");
@@ -192,7 +193,7 @@ public class KiOpponent {
                         TimerInt = 0;
                         timer.cancel();
                         YouCanplay = true;
-                        
+                        panel.repaint();
                     }
                 }
             }, 2 * 1000, 2 * 1000);
@@ -204,37 +205,37 @@ public class KiOpponent {
                     if (TimerInt == 1) {
                         the_4_KI_Player[0] = false;
                         the_4_KI_Player[1] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 3) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[1] = anzahlvonkarten[1] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 4) {
                         the_4_KI_Player[1] = false;
                         the_4_KI_Player[2] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 5) {
                         ArrayDeck[0] = ArrayDeck[0] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 7) {
                         the_4_KI_Player[2] = false;
                         the_4_KI_Player[3] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 8) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 9) {
                         ArrayDeck[2] = ArrayDeck[2] + 1;
                         anzahlvonkarten[3] = anzahlvonkarten[3] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt > 11) {
                         System.out.println("Ende Play 4");
@@ -243,7 +244,7 @@ public class KiOpponent {
                         TimerInt = 0;
                         timer.cancel();
                         YouCanplay = true;
-                        
+                        panel.repaint();
                     }
                 }
             }, 2 * 1000, 2 * 1000);
@@ -255,22 +256,22 @@ public class KiOpponent {
                     if (TimerInt == 1) {
                         the_4_KI_Player[0] = false;
                         the_4_KI_Player[1] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 3) {
                         the_4_KI_Player[1] = false;
                         the_4_KI_Player[2] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 4) {
                         ArrayDeck[3] = ArrayDeck[3] + 1;
                         anzahlvonkarten[2] = anzahlvonkarten[2] - 1;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt == 6) {
                         the_4_KI_Player[2] = false;
                         the_4_KI_Player[3] = true;
-                        
+                        panel.repaint();
                     }
                     if (TimerInt > 8) {
                         System.out.println("Ende Play 5");
@@ -279,7 +280,7 @@ public class KiOpponent {
                         TimerInt = 0;
                         timer.cancel();
                         YouCanplay = true;
-                        
+                        panel.repaint();
                     }
                 }
             }, 2 * 1000, 2 * 1000);

@@ -505,9 +505,9 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                 System.out.println("Start");
                 Start = false;
                 Hauptspiel = true;
+                repaint();
             }
-        }
-        if (Hauptspiel == true) {
+        } else if (Hauptspiel == true) {
 
             if (x > 400 && x < 445 && y > 390 && y < 440) {
                 System.out.println("Links");
@@ -538,26 +538,30 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                     }
                     repaint();
                     YouCanplay = false;
-                    KiOpponent.kiPlay();
+                    KiOpponent.kiPlay(this);
                 }
 
                 if (x > 145 && x < 285 && y > 480 && y < 675) {
                     // Karte 1
+                    System.out.println("Play Karte 1");
                     MouseEvents.PlayCard(0);
+                    repaint();
                 }
-                repaint();
                 if (x > 300 && x < 435 && y > 480 && y < 675) {
                     // Karte 2
+                    System.out.println("Play Karte 2");
                     MouseEvents.PlayCard(1);
                     repaint();
                 }
                 if (x > 450 && x < 585 && y > 480 && y < 675) {
                     // Karte 3
+                    System.out.println("Play Karte 3");
                     MouseEvents.PlayCard(2);
                     repaint();
                 }
                 if (x > 600 && x < 735 && y > 480 && y < 675) {
                     // Karte 4
+                    System.out.println("Play Karte 4");
                     MouseEvents.PlayCard(3);
                     repaint();
                 }
