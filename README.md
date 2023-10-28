@@ -6,8 +6,7 @@ Es wurde Entwickelt in Java.
 
 ## Spielablauf
 
-Dir werden 4 Karten auf die Hand gegeben. <br>
-Deine Anderen 3 Gegneren auch ;) <br>
+Dir und deinen 3 Gegner werden jeweils 4 Karte auf die Hand gegeben<br>
 
 ### Mitte:
 <img width="713" alt="image" src="./image/screenshots/screenshot%20Mitte.png">
@@ -37,6 +36,7 @@ Mit diesem Bekommst du 4 Völlig neue Karten auf die Hand, und bendest dein Zug.
 
 ## Ziel
 Das Ziel des spieles ist es in einem zug alle 4 Karte los zu werden.
+<img width="713" alt="image" src="./image/screenshots/Playing-Cards.png">
 
 ## Programmiert:
 Programmierer: Paul Merget. <br>
