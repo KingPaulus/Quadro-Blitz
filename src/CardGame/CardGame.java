@@ -53,7 +53,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     Image EndScreen = null;
 
     public CardGame() {
-        JFrame frame = new JFrame("Kartenspiel");
+        JFrame frame = new JFrame("Quadro-Blitz");
         frame.add(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(Breite, Hohe);
