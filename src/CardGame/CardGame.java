@@ -30,7 +30,6 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     public static String DeckKarte2 = "";
     public static String DeckKarte3 = "";
     public static String DeckKarte4 = "";
-    boolean Links = false, Rechts = false;
     public static boolean[] DeckKarte = new boolean[4];
     boolean Start = false;
     boolean Hauptspiel = false;
@@ -54,7 +53,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
     Image EndScreen = null;
 
     public CardGame() {
-        JFrame frame = new JFrame("Kartenspiel");
+        JFrame frame = new JFrame("Quadro-Blitz");
         frame.add(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(Breite, Hohe);
@@ -187,6 +186,29 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
         } else {
             System.out.println("ERROR Deck Karte " + (cardIndex + 1));
             return "0";
+        }
+    }
+
+    public int checkHowManyCardsYouHave() {
+        int index = 0;
+        for (int indexH = 0; indexH < ArrayHand.length; indexH++){
+            if (ArrayHand[indexH] != 0) {
+                index = index + 1;
+            }
+        }
+        return index;
+    }
+
+    public static void newCards() {
+        for (int indexL = 0; ArrayHand.length > indexL; indexL++) {
+            int rndm = (int) (Math.random() * 9);
+            if (rndm == 0) {
+                rndm = 1;
+            }
+            ArrayHand[indexL] = rndm;
+        }
+        for (int uuzz = 0; uuzz < anzahlvonkarten.length; uuzz++) {
+            anzahlvonkarten[uuzz] = 4;
         }
     }
 
@@ -452,7 +474,7 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
             zzu[1] = 150;
             zzu[2] = 220;
             zzu[3] = 290;
-            for (int uuz = 0; uuz < anzahlvonkarten[0]; uuz++) {
+            for (int uuz = 0; uuz < this.checkHowManyCardsYouHave(); uuz++) {
                 g.drawImage(imageKarte, zzu[0], 33, 24, 34, null);
                 zzu[0] = zzu[0] + 5;
             }
@@ -529,17 +551,6 @@ public class CardGame extends JPanel implements ActionListener, MouseListener, K
                 if (x > 810 && x < 875 && y > 410 && y < 500) {
                     System.out.println("Mischen");
                     System.out.println("--------");
-                    for (int MarvinLOL = 0; ArrayHand.length > MarvinLOL; MarvinLOL++) {
-                        int rndm = (int) (Math.random() * 9);
-                        if (rndm == 0) {
-                            rndm = 1;
-                        }
-                        ArrayHand[MarvinLOL] = rndm;
-                    }
-                    for (int uuzz = 0; uuzz < anzahlvonkarten.length; uuzz++) {
-                        anzahlvonkarten[uuzz] = 4;
-                    }
-                    repaint();
                     YouCanplay = false;
                     KiOpponent.kiPlay(this);
                 }

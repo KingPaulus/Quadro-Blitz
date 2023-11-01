@@ -18,7 +18,7 @@ public class KiOpponent {
         if (rndm > 5) {
             rndm = 5;
         }
-        System.out.println("Ki Spiel zug " + rndm);
+        System.out.println("Ki Spiel zug: " + rndm);
         Timer timer = new Timer();
         if (rndm == 1) {
             timer.scheduleAtFixedRate(new TimerTask() {
@@ -75,6 +75,7 @@ public class KiOpponent {
                         the_4_KI_Player[0] = true;
                         TimerInt = 0;
                         timer.cancel();
+                        CardGame.newCards();
                         YouCanplay = true;
                         panel.repaint();
                     }
@@ -136,6 +137,7 @@ public class KiOpponent {
                         the_4_KI_Player[0] = true;
                         TimerInt = 0;
                         timer.cancel();
+                        CardGame.newCards();
                         YouCanplay = true;
                         panel.repaint();
                     }
@@ -192,6 +194,7 @@ public class KiOpponent {
                         the_4_KI_Player[0] = true;
                         TimerInt = 0;
                         timer.cancel();
+                        CardGame.newCards();
                         YouCanplay = true;
                         panel.repaint();
                     }
@@ -243,6 +246,7 @@ public class KiOpponent {
                         the_4_KI_Player[0] = true;
                         TimerInt = 0;
                         timer.cancel();
+                        CardGame.newCards();
                         YouCanplay = true;
                         panel.repaint();
                     }
@@ -279,12 +283,12 @@ public class KiOpponent {
                         the_4_KI_Player[0] = true;
                         TimerInt = 0;
                         timer.cancel();
+                        CardGame.newCards();
                         YouCanplay = true;
                         panel.repaint();
                     }
                 }
             }, 2 * 1000, 2 * 1000);
         }
-
     }
 }

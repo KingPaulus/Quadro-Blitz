@@ -6,11 +6,10 @@ Es wurde Entwickelt in Java.
 
 ## Spielablauf
 
-Dir werden 4 Karten auf die Hand gegeben. <br>
-Deine Anderen 3 Gegneren auch ;) <br>
+Dir und deinen 3 Gegner werden jeweils 4 Karte auf die Hand gegeben<br>
 
 ### Mitte:
-<img width="713" alt="image" src="https://user-images.githubusercontent.com/114057140/229119353-f705f714-596d-48a7-b21f-33cfc3ee2c0e.png">
+<img width="713" alt="image" src="./image/screenshots/KartenDeck.png">
 
 In der mitte Liegen 4 Slots zu spielen der Teilnehmner. <br>
 auf ein Leeren Slot kann nur eine Karte der Wert Nummer 1 Gespielt werden.
@@ -29,12 +28,15 @@ Würde auf eine Karten stappel in der Mitte eine 9 Gepsielt verschwindet dieser,
 ### Gegner:
 Nach deinem Zug kommen deine 3 Mitspieler dran.
 
+<img width="713" alt="image" src="./image/screenshots/KI-Gegner.png">
+
 ### Zugende:
 Wenn du nicht in der Lage bist weiter zuspielen befindet sich zu deiner rechten eine Karten Stapel. <br>
 Mit diesem Bekommst du 4 Völlig neue Karten auf die Hand, und bendest dein Zug.
 
 ## Ziel
 Das Ziel des spieles ist es in einem zug alle 4 Karte los zu werden.
+<img width="400" alt="image" src="./image/screenshots/Playing-Cards.png">
 
 ## Programmiert:
 Programmierer: Paul Merget. <br>
